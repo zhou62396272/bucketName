@@ -13,6 +13,9 @@
 </template>
 
 <script setup>
+// 一个一个 慢慢输入 => 正常提示
+// 快速输入后停止时，如何能正常触发校验提示？？？
+
 import "ant-design-vue/dist/antd.css";
 import { reactive } from "vue";
 import axios from "axios";
@@ -39,7 +42,7 @@ const debouncePromise = (success, fail, time) => {
     }
     const timeoutPromise = new Promise((resolve) => {
       setTimeout(() => {
-        resolve(undefined);
+        resolve(undefined); //个人觉得就是每次输入都会立刻resolve，所以页面会来不及更新
       }, time);
     });
     promise = abortPromise(timeoutPromise);
